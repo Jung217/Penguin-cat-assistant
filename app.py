@@ -37,8 +37,11 @@ def handle_message(event):
             package_id='6325',
             sticker_id='10979924'
         )
+        a = 0
         line_bot_api.reply_message(event.reply_token, sticker_message)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
+        a = 1
+        if a == 1 :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
