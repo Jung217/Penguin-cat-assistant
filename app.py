@@ -40,6 +40,12 @@ def handle_message(event):
             sticker_id='10979924'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
+    elif re.match("AA",message):
+        sticker_message = StickerSendMessage(
+            package_id='6325',
+            sticker_id='10979924'
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

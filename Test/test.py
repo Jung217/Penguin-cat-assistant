@@ -1,5 +1,3 @@
-
-
     elif re.match("金門大學在哪",message):
         location_message = LocationSendMessage(
             title= "國立金門大學", 
