@@ -47,7 +47,7 @@ def handle_message(event):
             latitude= 24.44829638687612,  
             longitude= 118.32249208222159
             )
-line_bot_api.reply_message(event.reply_token, location_message)
+l       ine_bot_api.reply_message(event.reply_token, location_message)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
