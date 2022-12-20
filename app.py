@@ -1,17 +1,15 @@
-from flask import Flass
-app = Flask(__name__)
-
-import cv2 as cv
-import numpy as np
-from django.conf.urls.static import static
-from django.conf import settings
 from flask import Flask, request, abort
-from linebot import  LineBotApi, WebhookHandler
+from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import *
+
+app = Flask(__name__)
 
 line_bot_api = LineBotApi('8mHVNSHnlj3xx9180Kt+XKh6oVyljAhhV/qOrXL2XXorpdwIO5eard7Jfkvd2wR8P+cEQdUJQ3sEcI0clytSMsoaMH7fQZt4zjHoOUMdJXx9A9fsVr25H6gESwSPYJ3kOe3BF4+4qNnQzZXMVr5tbgdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('fe4ffd95d0f99b968144e632168904cc')
+
+line_bot_api.push_message('你自己的ID', TextSendMessage(text='你可以開始了'))
+
 
 @app.route("/image_process", methods=['POST'])
 def image_process(image_name,image_path):
