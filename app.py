@@ -1,4 +1,4 @@
-from flask import Flass
+from flask import Flask
 app = Flask(__name__)
 
 import cv2 as cv
