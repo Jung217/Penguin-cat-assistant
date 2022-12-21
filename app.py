@@ -51,22 +51,22 @@ def handle_message(event):
             longitude= 118.32249208222159
         )
         line_bot_api.reply_message(event.reply_token, location_message)
-    elif "攝影" in message:
+    elif "股票" in message:
         buttons_template_message = TemplateSendMessage(
-        alt_text = "攝影",
-        template=CarouselTemplate(
-            columns=[
+        alt_text = "股票資訊",
+        template=CarouselTemplate( 
+            columns=[ 
                 CarouselColumn( 
                     thumbnail_image_url ="https://chenchenhouse.com//wp-content/uploads/2020/10/%E5%9C%96%E7%89%871-2.png",
-                    title = message + "交給我", 
-                    text = "請點選想了解資訊", 
+                    title = message + " 股票資訊", 
+                    text ="請點選想查詢的股票資訊", 
                     actions =[
                         MessageAction( 
-                            label= "Jung's Flickr"
-                            text= "https://www.flickr.com/photos/cjc217"),
+                            label= message[3:] + " 個股資訊",
+                            text= "個股資訊 " + message[3:]),
                         MessageAction( 
-                            label= "Jung's Flickr",
-                            text= "https://www.instagram.com/chih_jung_chien/")
+                            label= message[3:] + " 個股新聞",
+                            text= "個股新聞 " + message[3:])
                         ]
                     )
                 ]
