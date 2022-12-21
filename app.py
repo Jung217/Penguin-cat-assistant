@@ -57,15 +57,15 @@ def handle_message(event):
         template=CarouselTemplate(
             columns=[
                 CarouselColumn( 
-                    thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
+                    thumbnail_image_url ="https://chenchenhouse.com//wp-content/uploads/2020/10/%E5%9C%96%E7%89%871-2.png",
                     title = message + "交給我", 
-                    text ="請點選想了解資訊", 
+                    text = "請點選想了解資訊", 
                     actions =[
                         MessageAction( 
-                            label="Jung's Flickr"
-                            text="https://www.flickr.com/photos/cjc217"),
+                            label= "Jung's Flickr"
+                            text= "https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
-                            label="Jung's Flickr",
+                            label= "Jung's Flickr",
                             text= "https://www.instagram.com/chih_jung_chien/")
                         ]
                     )
