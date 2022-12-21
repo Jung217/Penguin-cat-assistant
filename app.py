@@ -62,8 +62,8 @@ def handle_message(event):
                     text ="請點選想查詢的股票資訊", 
                     actions =[
                         MessageAction( 
-                            label= message[3:] + " 個股資訊",
-                            text= "個股資訊 " + message[3:]),
+                            label=" 個股資訊",
+                            text="https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
                             label= message[3:] + " 個股新聞",
                             text= "個股新聞 " + message[3:])
