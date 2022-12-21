@@ -32,7 +32,7 @@ def callback():
 def handle_message(event):
     message = event.message.text
     if re.match("大秘寶",message):
-        remessage = remessage = "觸發驚喜的密語:\n\n攝影\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
+        remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
@@ -51,22 +51,22 @@ def handle_message(event):
             longitude= 118.32249208222159
         )
         line_bot_api.reply_message(event.reply_token, location_message)
-    elif "股票" in message:
+    elif "後製" in message:
         buttons_template_message = TemplateSendMessage(
-        alt_text = "股票資訊",
+        alt_text = "後製",
         template=CarouselTemplate( 
             columns=[ 
                 CarouselColumn( 
                     thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
-                    title = message + " 股票資訊", 
-                    text ="請點選想查詢的股票資訊", 
+                    title = message + " 這裡看", 
+                    text ="請點選想了解的資訊", 
                     actions =[
                         MessageAction( 
-                            label=" 個股資訊",
+                            label="Flickr",
                             text="https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
-                            label= message[3:] + " 個股新聞",
-                            text= "個股新聞 " + message[3:])
+                            label="Instagram",
+                            text="https://www.instagram.com/chih_jung_chien/")
                         ]
                     )
                 ]
