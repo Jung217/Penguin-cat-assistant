@@ -32,12 +32,12 @@ def callback():
 def handle_message(event):
     message = event.message.text
     if re.match("大秘寶",message):
-        remessage = remessage = "觸發驚喜的密語:\n\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
+        remessage = remessage = "觸發驚喜的密語:\n\n攝影\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("今天我生日",message):
+    elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
-    elif re.match("恭喜",message):
+    elif "恭喜" in message:
         sticker_message = StickerSendMessage(
             package_id='6325',
             sticker_id='10979924'
@@ -51,6 +51,28 @@ def handle_message(event):
             longitude= 118.32249208222159
         )
         line_bot_api.reply_message(event.reply_token, location_message)
+    elif "攝影 " in message:
+         buttons_template_message = TemplateSendMessage(
+         alt_text = "攝影",
+        template=CarouselTemplate( 
+            columns=[ 
+                    CarouselColumn( 
+                        thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
+                        title = message + " 交給我", 
+                        text ="請點選想了解的細節", 
+                        actions =[
+                            MessageAction( 
+                                label= "Jung's Flickr",
+                                text= "https://www.flickr.com/photos/cjc217"),
+                            MessageAction( 
+                                label= "Jung's Instagram",
+                                text= "https://www.instagram.com/chih_jung_chien/?hl=zh-tw")
+                        ]
+                    )
+                ]
+            )
+         )
+         line_bot_api.reply_message(event.reply_token, buttons_template_message)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
