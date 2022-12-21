@@ -71,8 +71,8 @@ def handle_message(event):
                     )
                 ]
             )
-         )
-        line_bot_api.reply_message(event.reply_token, buttons_template_message))
+        )
+        line_bot_api.reply_message(event.reply_token, buttons_template_message)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
