@@ -54,7 +54,7 @@ def handle_message(event):
     elif "股票 " in message:
          buttons_template_message = TemplateSendMessage(
          alt_text = "股票資訊",
-        template=CarouselTemplate( 
+         template=CarouselTemplate( 
             columns=[ 
                     CarouselColumn( 
                         thumbnail_image_url ="https://chenchenhouse.com//wp-content/uploads/2020/10/%E5%9C%96%E7%89%871-2.png",
@@ -72,9 +72,7 @@ def handle_message(event):
                 ]
             )
          )
-         line_bot_api.reply_message(event.reply_token, buttons_template_message)
-     else:
-         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+        line_bot_api.reply_message(event.reply_token, buttons_template_message))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
