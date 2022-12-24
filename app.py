@@ -36,8 +36,7 @@ if lineMessage[0:3]== "隨便吃" :
     if line[4:-1] == "":
         address = ""
     else:address =lineMes[4:1]
-   addur1 = "htts://maps.googleapis.com/map/api/place/nearbyseach/json?key={}&address={}&sensor=false"
-   .format(AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,address)
+   addur1 = "htts://maps.googleapis.com/map/api/place/nearbyseach/json?key={}&address={}&sensor=false".format(AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,address)
    addressReq =request.get(addur1)
    addressDoc = addressReq.json()
    lat = addressDoc['result']['geometry']['location']['lat']
