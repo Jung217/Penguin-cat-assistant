@@ -39,8 +39,8 @@ if lineMessage[0:3]== "隨便吃" :
    addur1 = "htts://maps.googleapis.com/map/api/place/nearbyseach/json?key={}&address={}&sensor=false".format(AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,address)
    addressReq =request.get(addur1)
    addressDoc = addressReq.json()
-   lat = addressDoc['result']['geometry']['location']['lat']
-   lan = addressDoc['result']['geometry']['location']['lat']
+   lat = addressDoc['result'][0]['geometry']['location']['lat']
+   lan = addressDoc['result'][0]['geometry']['location']['lat']
 
 
     foodStoreSearch ="htts://maps.googleapis.com/map/api/place/nearbyseach/json?key={}&location={},{}&rankby=distance&type=restaurant&type=restaurant&language=zh-TW".format(AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,lat,lng)
@@ -70,16 +70,14 @@ if lineMessage[0:3]== "隨便吃" :
     #根據文件，最多只會有一張照片
         photo_reference =restaurant['photos'][0]['photo_reference']
         photo_width =restaurant["photos"][0]["width"]
-        thumbnail_image_ur1 =  "htts://maps.googleapis.com/map/api/place/photo?key={}&photoreference={}&maxwidth={}"
-        .format（AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,photo_reference,photo_width)
+        thumbnail_image_ur1 =  "htts://maps.googleapis.com/map/api/place/photo?key={}&photoreference={}&maxwidth={}".format(AIzaSyC5ahJJXTVNZPKaRWNS_Km_SyWIVzXOuDo,photo_reference,photo_width)
     #組裝餐廳詳細資訊
     rating = '無' if restaurant.get('rating') is None else restaurant['rating']
     address = '沒有資料' if restaurant.get('vicinity') is None else restaurant['vicinty']
     details = 'Google Map評分:{}\n地址:{}'.format(rating,address)
     #print(details)
     #取得餐廳的google map 網址
-    map_url = "htts://www.google.com/maps/seach/?api=1&query={let},{long}&query_place_id={place_id}"
-    .format(lat=restaurant['geometry']['location']['lat'],long=restaurant['geometry']['location']['lng'],place_id=restaurant['place_id'])
+    map_url = "htts://www.google.com/maps/seach/?api=1&query={let},{long}&query_place_id={place_id}".format(lat=restaurant['geometry']['location']['let'],long=restaurant['geometry']['location']['lng'],place_id=restaurant['place_id'])
 
     # 回復使用 Buttons Template
     buttons_template =TemplateSendMessage(
@@ -98,7 +96,7 @@ if lineMessage[0:3]== "隨便吃" :
         
     )
     line_bot_api.reply_message(event.reply_token, buttons_template)
-return 0
+    return 0
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
