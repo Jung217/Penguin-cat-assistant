@@ -30,51 +30,30 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = event.message.text
-    if re.match("大秘寶",message):
-        remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif "生日" in message:
-        bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
-    elif "恭喜" in message:
-        sticker_message = StickerSendMessage(
-            package_id='6325',
-            sticker_id='10979924'
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-    elif re.match("金門大學在哪",message):
-        location_message = LocationSendMessage(
-            title= "國立金門大學", 
-            address= "892金門縣金寧鄉大學路1號",
-            latitude= 24.44829638687612,  
-            longitude= 118.32249208222159
-        )
-        line_bot_api.reply_message(event.reply_token, location_message)
-    elif "後製" in message:
-        buttons_template_message = TemplateSendMessage(
-        alt_text = "後製",
+    if "股票 " in message:
+         buttons_template_message = TemplateSendMessage(
+         alt_text = "股票資訊",
         template=CarouselTemplate( 
             columns=[ 
-                CarouselColumn( 
-                    thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
-                    title = message + " 這裡看", 
-                    text ="請點選想了解的資訊", 
-                    actions =[
-                        MessageAction( 
-                            label="Flickr",
-                            text="https://www.flickr.com/photos/cjc217"),
-                        MessageAction( 
-                            label="Instagram",
-                            text="https://www.instagram.com/chih_jung_chien/")
+                    CarouselColumn( 
+                        thumbnail_image_url ="https://www.google.com/url?sa=i&url=https%3A%2F%2Flure.tw%2F%3Fc%3DProducts%26act%3DDetail%26id%3D1294406&psig=AOvVaw2lyI6lR83vdHnXQWtR0Ij-&ust=1671982271391000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPCAz7zJkvwCFQAAAAAdAAAAABAL",
+                        title = message + " 股票資訊", 
+                        text ="請點選想查詢的股票資訊", 
+                        actions =[
+                            MessageAction( 
+                                label= message[3:] + " 個股資訊",
+                                text= "個股資訊 " + message[3:]),
+                            MessageAction( 
+                                label= message[3:] + " 個股新聞",
+                                text= "個股新聞 " + message[3:])
                         ]
                     )
                 ]
             )
-        )
-        line_bot_api.reply_message(event.reply_token, buttons_template_message)
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
+         )
+         line_bot_api.reply_message(event.reply_token, buttons_template_message)
+     else:
+         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
