@@ -36,7 +36,7 @@ def handle_message(event):
         template=CarouselTemplate( 
             columns=[ 
                     CarouselColumn( 
-                        thumbnail_image_url ="https://www.google.com/url?sa=i&url=https%3A%2F%2Flure.tw%2F%3Fc%3DProducts%26act%3DDetail%26id%3D1294406&psig=AOvVaw2lyI6lR83vdHnXQWtR0Ij-&ust=1671982271391000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPCAz7zJkvwCFQAAAAAdAAAAABAL",
+                        thumbnail_image_url ="https://stickershop.line-scdn.net/stickershop/v1/product/1294406/LINEStorePC/main.png",
                         title = message + " 股票資訊", 
                         text ="請點選想查詢的股票資訊", 
                         actions =[
