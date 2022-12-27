@@ -37,6 +37,16 @@ def handle_message(event):
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
+    elif "吃什麼" in message:
+        restaurant = [['金門牛家莊','金門縣金城鎮民族路318巷5號',24.431038009052358,118.31409884232771],['記德海鮮餐廳','金門縣金寧鄉慈湖路二段105號',24.447731288894147,118.31104168283404]]
+        r = random.randint(0, len(restaurant)-1)
+        location_message = LocationSendMessage(
+            title= restaurant[r][0], 
+            address= restaurant[r][1],
+            latitude= restaurant[r][2],  
+            longitude= restaurant[r][3]
+        )
+        line_bot_api.reply_message(event.reply_token, location_message)
     elif "恭喜" in message:
         sticker_message = StickerSendMessage(
             package_id='6325',
