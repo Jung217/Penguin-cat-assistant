@@ -80,7 +80,7 @@ def handle_message(event):
                 CarouselColumn( 
                     thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",
                     title = "讓貓貓企鵝小助手為你測試運氣吧!", 
-                    text ="請選擇一種方法", 
+                    text ="請選擇一種方法測" + message, 
                     actions =[
                         MessageAction( 
                             label="擲筊",
@@ -111,10 +111,7 @@ def handle_message(event):
                             text="https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
                             label="Flickr",
-                            text="https://www.flickr.com/photos/cjc217"),
-                        MessageAction( 
-                            label="Instagram",
-                            text="https://www.instagram.com/chih_jung_chien/")
+                            text="https://www.flickr.com/photos/cjc217")
                         ]
                     )
                 ]
