@@ -5,8 +5,12 @@ from linebot.models import *
 import re
 import os
 import random
+import configparser
 
 app = Flask(__name__)
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 line_bot_api = LineBotApi('8mHVNSHnlj3xx9180Kt+XKh6oVyljAhhV/qOrXL2XXorpdwIO5eard7Jfkvd2wR8P+cEQdUJQ3sEcI0clytSMsoaMH7fQZt4zjHoOUMdJXx9A9fsVr25H6gESwSPYJ3kOe3BF4+4qNnQzZXMVr5tbgdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('fe4ffd95d0f99b968144e632168904cc')
@@ -31,7 +35,17 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if re.match("大秘寶",message):
+    sendString = ""
+    if "擲筊" in event.message.text:
+        sendString = divinationBlocks()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+    elif "抽簽" in event.message.text or "抽" in event.message.text:
+        sendString = drawStraws()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+    elif:
+        sendString = event.message.text
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString)) 
+    elif re.match("大秘寶",message):
         remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
@@ -85,6 +99,14 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
+
+def divinationBlocks():
+    divinationBlocksList = ["笑杯", "正杯", "正杯", "笑杯"] 
+    return divinationBlocksList[random.randint(0, len(divinationBlocksList) - 1)]
+
+def drawStraws():
+    drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
+    return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
