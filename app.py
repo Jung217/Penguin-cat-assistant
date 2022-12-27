@@ -89,6 +89,9 @@ def handle_message(event):
                             label="Flickr",
                             text="https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
+                            label="Flickr",
+                            text="https://www.flickr.com/photos/cjc217"),
+                        MessageAction( 
                             label="Instagram",
                             text="https://www.instagram.com/chih_jung_chien/")
                         ]
