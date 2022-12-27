@@ -102,7 +102,7 @@ def handle_message(event):
         template=CarouselTemplate( 
             columns=[ 
                 CarouselColumn( 
-                    thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
+                    thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",#"https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
                     title = message + " 這裡看", 
                     text ="請點選想了解的資訊", 
                     actions =[
