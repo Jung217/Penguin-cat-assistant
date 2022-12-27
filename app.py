@@ -39,10 +39,10 @@ def handle_message(event):
     if re.match("大秘寶",message):
         remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("1",message):
+    elif re.match("擲筊",message):
         sendString = "恭喜" + divinationBlocks() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
-    elif re.match("2",message):
+    elif re.match("抽籤",message):
         sendString = "恭喜" + drawStraws() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
     elif "生日" in message:
