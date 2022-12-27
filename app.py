@@ -36,18 +36,15 @@ def callback():
 def handle_message(event):
     message = event.message.text
     sendString = ""
-    if "擲筊" in event.message.text:
-        sendString = divinationBlocks()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
-    elif "抽簽" in event.message.text or "抽" in event.message.text:
-        sendString = drawStraws()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
-    elif:
-        sendString = event.message.text
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString)) 
-    elif re.match("大秘寶",message):
+    if re.match("大秘寶",message):
         remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+    elif "擲筊" in event.message.text:
+        sendString = divinationBlocks()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+    elif "抽籤" in event.message.text:
+        sendString = drawStraws()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
