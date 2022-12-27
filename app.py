@@ -74,7 +74,7 @@ def handle_message(event):
                 CarouselColumn( 
                     thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",
                     title = "讓貓貓企鵝小助手為你測試運氣吧!", 
-                    text ="請選擇一種方法測" + message, 
+                    text ="請選擇一種方法測", 
                     actions =[
                         MessageAction( 
                             label="擲筊",
@@ -90,6 +90,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, buttons_template_message)
     elif re.match("擲筊",message):
         sendString = "恭喜" + divinationBlocks() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
@@ -102,7 +103,7 @@ def handle_message(event):
         template=CarouselTemplate( 
             columns=[ 
                 CarouselColumn( 
-                    thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",#"https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
+                    thumbnail_image_url ="https://live.staticflickr.com/65535/52288829887_98585c5641_h.jpg",
                     title = message + " 這裡看", 
                     text ="請點選想了解的資訊", 
                     actions =[
