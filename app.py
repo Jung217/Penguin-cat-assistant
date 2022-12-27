@@ -73,7 +73,7 @@ def handle_message(event):
             columns=[ 
                 CarouselColumn( 
                     thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",
-                    title = "讓貓貓企鵝小助手為你測試運氣吧!", 
+                    title = "讓貓貓企鵝小助手\n為你測試運氣吧!", 
                     text ="請選擇一種方法測", 
                     actions =[
                         MessageAction( 
