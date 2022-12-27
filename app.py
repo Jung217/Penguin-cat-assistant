@@ -39,9 +39,6 @@ def handle_message(event):
     if re.match("大秘寶",message):
         remessage = remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif "運氣" in event.message.text:
-        sendString = '讓貓貓企鵝小助手為你測試運氣吧!\n請選一種方法 : 1.擲筊  2.抽籤'
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
     elif re.match("1",message):
         sendString = "恭喜" + divinationBlocks() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
@@ -75,7 +72,31 @@ def handle_message(event):
             longitude= 118.32249208222159
         )
         line_bot_api.reply_message(event.reply_token, location_message)
-    elif "後製" in message:
+    elif "運氣" in message:
+        buttons_template_message = TemplateSendMessage(
+        alt_text = "運氣",
+        template=CarouselTemplate( 
+            columns=[ 
+                CarouselColumn( 
+                    thumbnail_image_url ="https://mednote.files.wordpress.com/2019/10/img_1689.jpg",
+                    title = "讓貓貓企鵝小助手為你測試運氣吧!", 
+                    text ="請選擇一種方法", 
+                    actions =[
+                        MessageAction( 
+                            label="擲筊",
+                            text="擲筊"),
+                        MessageAction( 
+                            label="抽籤",
+                            text="抽籤"),
+                        MessageAction( 
+                            label="Not set yet",
+                            text=":)")
+                        ]
+                    )
+                ]
+            )
+        )
+    elif "運氣" in message:
         buttons_template_message = TemplateSendMessage(
         alt_text = "後製",
         template=CarouselTemplate( 
