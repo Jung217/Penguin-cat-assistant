@@ -96,7 +96,7 @@ def handle_message(event):
                 ]
             )
         )
-    elif "運氣" in message:
+    elif "後製" in message:
         buttons_template_message = TemplateSendMessage(
         alt_text = "後製",
         template=CarouselTemplate( 
