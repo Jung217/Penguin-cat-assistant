@@ -1,60 +1,56 @@
-from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import *
-import re
+import requests
+import pandas as pd
+from io import StringIO
+import datetime
 import os
-import random
+from bs4 import BeautifulSoup
 
-app = Flask(__name__)
+message = input('請輸入股票名稱:')
 
-line_bot_api = LineBotApi('8mHVNSHnlj3xx9180Kt+XKh6oVyljAhhV/qOrXL2XXorpdwIO5eard7Jfkvd2wR8P+cEQdUJQ3sEcI0clytSMsoaMH7fQZt4zjHoOUMdJXx9A9fsVr25H6gESwSPYJ3kOe3BF4+4qNnQzZXMVr5tbgdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('fe4ffd95d0f99b968144e632168904cc')
+url = 'https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname=&isincode=&market=1&issuetype=&industry_code=&Page=1&chklike=Y'
+r = requests.get(url)
+listed = pd.read_html(r.text)[0]
+listed.columns = listed.iloc[0,:]
 
-line_bot_api.push_message('U9331f84776672cb357b3b8b9f89ebeaf', TextSendMessage(text='You can start !'))
+for i in range(24743):
+    stock_ary = []
+    stock_ary.append(listed.iloc[i][2])
+    stock_ary.append(listed.iloc[i][3])
+    stock_ary.append(listed.iloc[i][5])
+    if(message == stock_ary[1]):
+        stock_num = stock_ary[0]
+        stock_atr = stock_ary[2]
+        break
 
 
-@app.route("/callback", methods=['POST'])
-def callback():
-    signature = request.headers['X-Line-Signature']
+print(stock_num)
+url_stock = ('https://goodinfo.tw/tw/StockBzPerformance.asp?STOCK_ID=%s' %stock_num)
+print(url_stock)
 
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
- 
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
- 
-    return 'OK'
+headers = {
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
+}
+r1 = requests.get(url_stock, headers=headers)
+r1.encoding = "utf-8"
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    if "股票 " in message:
-         buttons_template_message = TemplateSendMessage(
-         alt_text = "股票資訊",
-        template=CarouselTemplate( 
-            columns=[ 
-                    CarouselColumn( 
-                        thumbnail_image_url ="https://stickershop.line-scdn.net/stickershop/v1/product/1294406/LINEStorePC/main.png",
-                        title = message + " 股票資訊", 
-                        text ="請點選想查詢的股票資訊", 
-                        actions =[
-                            MessageAction( 
-                                label= message[3:] + " 個股資訊",
-                                text= "個股資訊 " + message[3:]),
-                            MessageAction( 
-                                label= message[3:] + " 個股新聞",
-                                text= "個股新聞 " + message[3:])
-                        ]
-                    )
-                ]
-            )
-         )
-         line_bot_api.reply_message(event.reply_token, buttons_template_message)
-     else:
-         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+sp = BeautifulSoup(r1.text,'lxml')
+rows = sp.select('table.b1.p4_2.r10 tr')
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+td_ary = []
+for row in rows:
+    td = row.find_all('td')
+    td_ary += td
+
+print('\r')
+print('股票代碼：　' + stock_num)
+print('股票名稱：　' + message)
+print('證卷別　：　' + stock_atr)
+print('成交價　：　' + td_ary[10].text)
+print('昨收　　：　' + td_ary[11].text)
+print('漲跌價　：　' + td_ary[12].text)
+print('漲跌幅　：　' + td_ary[13].text)
+print('振幅　　：　' + td_ary[14].text)
+print('開盤　　：　' + td_ary[15].text)
+print('最高　　：　' + td_ary[16].text)
+print('最低　　：　' + td_ary[17].text)
+print('成交均價：　' + td_ary[22].text)
