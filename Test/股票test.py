@@ -25,11 +25,6 @@ for i in range(24743):
         break
     else:
         stock_name = False
-
-if(stock_name == False):
-    print('\r')
-    print('查無此股票，請再輸入一次')
-    print('若股票名稱中有「臺」，請將它改為「台」')
     
 if(stock_name == True):
     url_stock = ('https://goodinfo.tw/tw/StockBzPerformance.asp?STOCK_ID=%s' %stock_num)
@@ -61,3 +56,8 @@ if(stock_name == True):
     print('最高　　：　' + td_ary[16].text)
     print('最低　　：　' + td_ary[17].text)
     print('成交均價：　' + td_ary[22].text)
+
+if(stock_name == False):
+    print('\r')
+    print('查無此股票，請再輸入一次')
+    print('若股票名稱中有「臺」，請將它改為「台」')
