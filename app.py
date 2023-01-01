@@ -125,6 +125,12 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
+    elif re.match("更多功能",message):
+        image_message = ImageSendMessage(
+            original_content_url='https://raw.githubusercontent.com/Jung217/Penguin-cat-assistant/main/pic/tired.jpg',
+            preview_image_url='https://raw.githubusercontent.com/Jung217/Penguin-cat-assistant/main/pic/tired.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, image_message)
     elif re.match("星座運勢",message):
         remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
