@@ -111,8 +111,8 @@ def handle_message(event):
                             label="Flickr",
                             text="https://www.flickr.com/photos/cjc217"),
                         MessageAction( 
-                            label="Flickr",
-                            text="https://www.flickr.com/photos/cjc217")
+                            label="後製特效",
+                            text="後製特效")
                         ]
                     )
                 ]
