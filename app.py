@@ -80,7 +80,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, location_message)
 
-    elif "運勢" in message:
+    elif re.match("運勢",message):
         buttons_template_message = TemplateSendMessage(
         alt_text = "運勢",
         template=CarouselTemplate( 
