@@ -40,9 +40,9 @@ def handle_message(event):
         remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif re.match("星座運勢",message):
-        remessage = "請輸入星座代號:\n1.牡羊 2.金牛 3.雙子\n4.巨蟹 5.獅子 6.處女\n7.天秤 8.天蠍 9.射手\n10.魔羯 11.水瓶 12.雙魚"
+        remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("1",message):
+    elif re.match("0",message):
         remessage = "https://astro.click108.com.tw/daily_", message , ".php?iAstro=", message
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
