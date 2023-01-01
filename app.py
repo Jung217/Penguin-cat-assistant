@@ -72,9 +72,9 @@ def handle_message(event):
             longitude= 118.32249208222159
         )
         line_bot_api.reply_message(event.reply_token, location_message)
-    elif "運氣" in message:
+    elif "運勢" in message:
         buttons_template_message = TemplateSendMessage(
-        alt_text = "運氣",
+        alt_text = "運勢",
         template=CarouselTemplate( 
             columns=[ 
                 CarouselColumn( 
