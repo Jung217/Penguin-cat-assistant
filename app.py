@@ -43,6 +43,9 @@ def handle_message(event):
         remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "0"  or "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10" or "11" in message:
+        def aqua(a):
+            reme = "https://astro.click108.com.tw/daily_"+ a + ".php?iAstro=" + a
+            return reme
         remessage = aqua(message)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
@@ -135,11 +138,6 @@ def divinationBlocks():
 def drawStraws():
     drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶", "大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
     return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
-
-def aqua(a):
-    reme = "https://astro.click108.com.tw/daily_"+ a + ".php?iAstro=" + a
-    return reme
-    
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
