@@ -43,7 +43,7 @@ def handle_message(event):
         remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif re.match("0",message):
-        remessage = "https://astro.click108.com.tw/daily_", message , ".php?iAstro=", message
+        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
