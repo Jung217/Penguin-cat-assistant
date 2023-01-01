@@ -129,7 +129,8 @@ def handle_message(event):
         remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif re.match("0",message) or re.match("1",message) or re.match("2",message) or re.match("3",message) or re.match("4",message) or re.match("5",message) or re.match("6",message) or re.match("7",message) or re.match("8",message) or re.match("9",message) or re.match("10",message) or re.match("11",message):
-        if(message >= 0 or message <=11):
+        message_int = int(message)
+        if(message_int >= 0 or message_int <=11):
             remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
             line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         else:
