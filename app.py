@@ -11,6 +11,7 @@ import re
 import os
 import random
 import configparser
+from PIL import Image
 
 app = Flask(__name__)
 
