@@ -42,41 +42,8 @@ def handle_message(event):
     elif re.match("星座運勢",message):
         remessage = "請輸入星座代號:\n0.牡羊 1.金牛 2.雙子\n3.巨蟹 4.獅子 5.處女\n6.天秤 7.天蠍 8.射手\n9.魔羯 10.水瓶 11.雙魚"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("0",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("1",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("2",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("3",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("4",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("5",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("6",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("7",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("8",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("9",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("10",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-    elif re.match("11",message):
-        remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
+    elif "0" or "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10" or "11" in message:
+        remessage = aqua(message)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
@@ -168,6 +135,11 @@ def divinationBlocks():
 def drawStraws():
     drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶", "大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
     return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
+
+def aqua(in):
+    reme = "https://astro.click108.com.tw/daily_"+ in + ".php?iAstro=" + in
+    return reme
+    
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
