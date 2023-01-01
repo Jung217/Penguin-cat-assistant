@@ -169,8 +169,8 @@ def drawStraws():
     drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶", "大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
     return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
 
-def aqua(in):
-    reme = "https://astro.click108.com.tw/daily_"+ in + ".php?iAstro=" + in
+def aqua(a):
+    reme = "https://astro.click108.com.tw/daily_"+ a + ".php?iAstro=" + a
     return reme
     
 
