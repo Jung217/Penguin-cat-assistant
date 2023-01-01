@@ -130,7 +130,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif re.match("0",message) or re.match("1",message) or re.match("2",message) or re.match("3",message) or re.match("4",message) or re.match("5",message) or re.match("6",message) or re.match("7",message) or re.match("8",message) or re.match("9",message) or re.match("10",message) or re.match("11",message):
         message_int = int(message)
-        if(message_int >= 0 or message_int <=11):
+        if(message_int >= 0 and message_int <= 11):
             remessage = "https://astro.click108.com.tw/daily_"+ message + ".php?iAstro=" + message
             line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         else:
