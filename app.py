@@ -39,6 +39,12 @@ def handle_message(event):
     if re.match("大秘寶",message):
         remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+    elif re.match("星座運勢",message):
+        remessage = "請輸入星座代號:\n1.牡羊 2.金牛 3.雙子\n4.巨蟹 5.獅子 6.處女\n7.天秤 8.天蠍 9.射手\n10.魔羯 11.水瓶 12.雙魚"
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+    elif re.match("1",message):
+        remessage = "https://astro.click108.com.tw/daily_", message , ".php?iAstro=", message
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
@@ -83,8 +89,8 @@ def handle_message(event):
                             label="抽籤",
                             text="抽籤"),
                         MessageAction( 
-                            label="Not set yet",
-                            text=":)")
+                            label="星座",
+                            text="星座運勢")
                         ]
                     )
                 ]
