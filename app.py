@@ -2,6 +2,11 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
+from io import StringIO
+from bs4 import BeautifulSoup
+import datetime
+import pandas as pd
+import requests
 import re
 import os
 import random
