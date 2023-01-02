@@ -107,7 +107,7 @@ def callback():
  
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent)
 def handle_message(event):
     message = event.message.text
     sendString = ""
@@ -121,11 +121,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
 
     elif re.match("股票資訊",message):
-        remessage = "請輸入你想輸入的股票名稱: \n 如:@股票 台積電"
+        remessage = "請輸入您想輸入的股票名稱: \n 如:@台積電 \n 請稍後..."
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         
-    elif '@股票' in message:
-        stock_in = message.replace('@股票 ', '')
+    elif '@' in message:
+        stock_in = message.replace('@', '')
         remessage = stock_info(stock_in)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
