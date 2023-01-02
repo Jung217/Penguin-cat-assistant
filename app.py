@@ -116,7 +116,9 @@ def callback():
 def handle_message(event):
     if event.message.type == "image":
         SendImage = line_bot_api.get_message_content(event.message.id)
-        ID = SendImage.replace('<linebot.models.responses.Content object at >', '')
+        SI = str(SendImage)
+        ID = SI.replace('<linebot.models.responses.Content object at ', '')
+        ID = ID.replace('>', '')
 		#local_save = './pic/' + ID + '.png'
 
 		#with open(local_save, 'wb') as fd:
