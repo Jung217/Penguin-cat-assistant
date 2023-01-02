@@ -124,6 +124,7 @@ def callback():
 def handle_message(event):
     message = event.message.text
     sendString = ""
+    translator = Translator()
     
     if re.match("大秘寶",message):
         remessage = "觸發驚喜的密語:\n\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
@@ -141,12 +142,12 @@ def handle_message(event):
         stock_in = message.replace('@', '')
         remessage = stock_info(stock_in)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
     elif re.match("翻譯小精靈",message):
         remessage = "請輸入您想輸入的翻譯文章: \n 如:翻中文 \n翻英文 \n翻日文"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-        
+
     elif '翻中文' in message:
-        translator = Translator()
         tran_chinese = message.replace('翻中文', '')
         remessage = translator.translate(tran_chinese,dest="zh-TW").text  
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
