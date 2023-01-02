@@ -107,7 +107,7 @@ def callback():
  
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent)
 def handle_message(event):
     message = event.message.text
     sendString = ""
