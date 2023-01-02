@@ -117,7 +117,7 @@ def handle_message(event):
     if event.message.type == "image":
         SendImage = line_bot_api.get_message_content(event.message.id)
         ID = SendImage.replace('<linebot.models.responses.Content object at >', '')
-		local_save = './Image/' + ID + '.png'
+		local_save = './pic/' + ID + '.png'
 		with open(local_save, 'wb') as fd:
 			for chenk in SendImage.iter_content():
 				fd.write(chenk)
