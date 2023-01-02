@@ -21,3 +21,9 @@ WHurl = "https://penguin-cat-assistant.herokuapp.com"
 
 		img_url = glucose_graph(d8f43d95eef9f03, local_save)
 		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+
+
+
+if event.message.type == "image":
+        SendImage = line_bot_api.get_message_content(event.message.id)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(SendImage)))
