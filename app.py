@@ -115,21 +115,13 @@ def callback():
 @handler.add(MessageEvent)
 def handle_message(event):
     if event.message.type == "image":
-        SendImage = line_bot_api.get_message_content(event.message.id)
+        message_content = line_bot_api.get_message_content('<message_id>')
 
-        SI = str(SendImage)
-        ID = SI.replace('<linebot.models.responses.Content object at ', '')
-        ID = ID.replace('>', '')
+        with open(file_path, 'wb') as fd:
+            for chunk in message_content.iter_content():
+                fd.write(chunk)
 
-		local_save = './pic/'# + ID + '.png'
-
-		with open(local_save, 'wb') as fd:
-			for chenk in SendImage.iter_content():
-				fd.write(chenk)
-
-		img_url = glucose_graph("d8f43d95eef9f03", local_save)
-		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(str(ID)))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(message_content)))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
