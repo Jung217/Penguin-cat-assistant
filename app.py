@@ -114,17 +114,8 @@ def callback():
 
 @handler.add(MessageEvent)
 def handle_message(event):
-    
-    if event.message.type == "text":
-        message = event.message.text
-        sendString = ""
-        if re.match("大秘寶",message):
-            remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
-            img_url = glucose_graph('d8f43d95eef9f03', local_save)
-            line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
 
-    elif event.message.type == "image":
+    if event.message.type == "image":
 		SendImage = line_bot_api.get_message_content(event.message.id)
 
 		local_save = './Image/' + event.message.id + '.png'
@@ -132,8 +123,8 @@ def handle_message(event):
 			for chenk in SendImage.iter_content():
 				fd.write(chenk)
 
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
+		img_url = glucose_graph('d8f43d95eef9f03', local_save)
+		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
