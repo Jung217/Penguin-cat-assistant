@@ -113,7 +113,7 @@ def handle_message(event):
     sendString = ""
     
     if re.match("大秘寶",message):
-        remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
+        remessage = "觸發驚喜的密語:\n\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif "生日" in message:
