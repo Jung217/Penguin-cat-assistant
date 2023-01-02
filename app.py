@@ -106,6 +106,11 @@ def stock_info(stock_in):
         stock_out = '查無此股票，請再輸入一次' + '\n' + '若股票名稱中有「臺」，請將它改為「台」'
     return stock_out
 
+def translate_text(text,dest='en'):
+    translator = Translator()
+    result = translator.translate(text, dest).text
+    return result
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
