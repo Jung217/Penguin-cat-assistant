@@ -213,7 +213,7 @@ def handle_message(event):
 
     elif re.match('後製示範',message):
         video_message = VideoSendMessage(
-            original_content_url='https://imgur.com/TxrFM93',
+            original_content_url='https://youtu.be/Tp_tT4vJIdY',
             preview_image_url='https://imgur.com/9lDJ8nH'
         )
         line_bot_api.reply_message(event.reply_token, video_message)
@@ -239,7 +239,7 @@ def handle_message(event):
                         MessageAction( 
                             label="後製",
                             text="後製特效"),
-                            MessageAction( 
+                        MessageAction( 
                             label="示範",
                             text="後製示範"),
                         MessageAction( 
