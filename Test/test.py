@@ -1,58 +1,19 @@
-WHurl = "https://penguin-cat-assistant.herokuapp.com"
-		SendImage = line_bot_api.get_message_content(event.message.id)
-		local_save = './static/' + event.message.id + '.png'
-		with open(local_save, 'wb') as fd:
-			for chenk in SendImage.iter_content():
-				fd.write(chenk)
-        image_message = ImageSendMessage(
-            original_content_url = WHurl + "/static/" + event.message.id + ".png",
-            preview_image_url = WHurl + "/static/" + event.message.id + ".png"
-        )
-		line_bot_api.reply_message(event.reply_token, image_message)
+from imgurpython import ImgurClient
 
+client_id = 'd8f43d95eef9f03'
+client_secret = '01067fd51b3a4f19591fd6fd7f06652e803e30c2'
+album_id = 'a/u8HqBZL'
+access_token = '9186d34380cec7f4896f65addc9ca95f6022ba39'
+refresh_token = '52394ee41eec3876be8484cbb5ede2e63ebf2d1d'
 
-    if event.message.type == "image":
-        SendImage = line_bot_api.get_message_content(event.message.id)
-
-		local_save = './Image/' + event.message.id + '.png'
-		with open(local_save, 'wb') as fd:
-			for chenk in SendImage.iter_content():
-				fd.write(chenk)
-
-		img_url = glucose_graph(d8f43d95eef9f03, local_save)
-		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-
-
-
-if event.message.type == "image":
-        SendImage = line_bot_api.get_message_content(event.message.id)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(SendImage)))
-
-
-if event.message.type == "image":
-        SendImage = line_bot_api.get_message_content(event.message.id)
-
-        SI = str(SendImage)
-        ID = SI.replace('<linebot.models.responses.Content object at ', '')
-        ID = ID.replace('>', '')
-
-		local_save = './pic/' + ID + '.png'
-
-		with open(local_save, 'wb') as fd:
-			for chenk in SendImage.iter_content():
-				fd.write(chenk)
-
-		img_url = glucose_graph("d8f43d95eef9f03", local_save)
-		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(str(ID)))
-
-if event.message.type == "image":
-        message_content = line_bot_api.get_message_content(event.message.id)
-
-        file_path = "Penguin-cat-assistant\pic"
-
-        with open(file_path, 'wb') as fd:
-            for chunk in message_content.iter_content():
-                fd.write(chunk)
-
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(message_content)))
+if __name__ == "__main__":
+    client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+    config = {
+        'album': album_id,
+        'name': 'Test',
+        'title': 'Test',
+        'description': 'Test'
+    }
+    print("Uploading image... ")
+    image = client.upload_from_path('test.png', config=config, anon=False)
+    print("Done")
