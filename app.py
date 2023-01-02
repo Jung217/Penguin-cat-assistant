@@ -59,8 +59,7 @@ def handle_message(event):
         
     elif '@股票' in message:
         stock_in = message.replace('@股票 ', '')
-        stock_info(stock_in)
-        remessage = stock_in
+        remessage = stock_info(stock_in)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif "吃什麼" in message:
