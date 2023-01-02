@@ -1,10 +1,11 @@
-message = "@股票 台積電"
+import requests
+import pandas as pd
+from io import StringIO
+import datetime
+import os
+from bs4 import BeautifulSoup
 
-if '@股票' in message:
-    stock_in = message.replace('@股票 ', '')
-    stock_info(stock_in)
-    remessage = stock_in
-    print(remessage)
+message = "@股票 台積電"
 
 def stock_info(stock_in):
     url = 'https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname=&isincode=&market=1&issuetype=&industry_code=&Page=1&chklike=Y'
@@ -18,11 +19,11 @@ def stock_info(stock_in):
         stock_ary.append(listed.iloc[i][2])
         stock_ary.append(listed.iloc[i][3])
         stock_ary.append(listed.iloc[i][5])
-    if(stock_in == stock_ary[1]):
-        stock_num = stock_ary[0]
-        stock_atr = stock_ary[2]
-        stock_name = True
-        break
+        if(stock_in == stock_ary[1]):
+            stock_num = stock_ary[0]
+            stock_atr = stock_ary[2]
+            stock_name = True
+            break
     else:
         stock_name = False
     
@@ -60,3 +61,8 @@ def stock_info(stock_in):
     elif(stock_name == False):
         stock_out = '查無此股票，請再輸入一次' + '\n' + '若股票名稱中有「臺」，請將它改為「台」'
     return stock_out
+
+if '@股票' in message:
+    stock_in = message.replace('@股票 ', '')
+    remessage = stock_info(stock_in)
+    print(remessage)
