@@ -74,7 +74,7 @@ def stock_info(stock_in):
             td = row.find_all('td')
             td_ary += td
 
-        if(stock_atr == '股票')
+        if(stock_atr == '股票'):
             date = td_ary[4].text.replace('資料日期: ', '')  #日期
             stock_num = stock_num                           #股票代碼
             stock_in = stock_in                             #股票名稱
@@ -103,7 +103,7 @@ def stock_info(stock_in):
             highprice = td_ary[10].text                    
             lowprice = td_ary[11].text                     
             averageprice = td_ary[16].text      
-                        
+
         stock_out = ('日期　　：　%s\n股票代碼：　%s\n股票名稱：　%s\n證卷別　：　%s\n成交價　：　%s\n昨收　　：　%s\n漲跌價　：　%s\n漲跌幅　：　%s\n振幅　　：　%s\n開盤價　：　%s\n最高價　：　%s\n最低價　：　%s\n成交均價：　%s' %(date, stock_num, stock_in, attribute, price, yesterday, updowmprice, updownchange, amplitude, openprice, highprice, lowprice, averageprice))
         
     elif(stock_name == False):
