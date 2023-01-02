@@ -147,18 +147,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif re.match("翻譯小精靈",message):
-        remessage = "請輸入您想輸入的翻譯文章: \n 如:翻中文 \n翻英文 \n翻日文"
+        remessage = "請輸入您想翻譯的文章: \n 如:翻中 Hello World! \n 　 翻英 你好世界\n 　 翻日 你好世界"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     
     elif "翻中 " in message:
         content = translate_text(event.message.text[3:], "zh-tw")
         remessage = TextSendMessage(text=content)
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
     elif "翻英 " in message:
         content = translate_text(event.message.text[3:] , "en")
         remessage = TextSendMessage(text=content)
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
     elif "翻日 " in message:
         content = translate_text(event.message.text[3:] , "ja")
