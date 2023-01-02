@@ -3,7 +3,7 @@ from PIL import Image
 
 url = "https://raw.githubusercontent.com/Jung217/Penguin-cat-assistant/main/pic/me.png"
 img1 = Image.open(request.urlopen(url))
-img2 = Image.open(r"後製圖片路徑")
+img2 = Image.open(r"圖片路徑")
 
 w, h = img2.size
 PY = int(h-(w/2*0.86))
