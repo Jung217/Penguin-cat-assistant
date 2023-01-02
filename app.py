@@ -11,14 +11,12 @@ from linebot.exceptions import (
 from linebot.models import *
 
 import tempfile, os
-from config import client_id, client_secret, album_id, access_token, refresh_token
+from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('8mHVNSHnlj3xx9180Kt+XKh6oVyljAhhV/qOrXL2XXorpdwIO5eard7Jfkvd2wR8P+cEQdUJQ3sEcI0clytSMsoaMH7fQZt4zjHoOUMdJXx9A9fsVr25H6gESwSPYJ3kOe3BF4+4qNnQzZXMVr5tbgdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('fe4ffd95d0f99b968144e632168904cc')
-
-line_bot_api.push_message('U9331f84776672cb357b3b8b9f89ebeaf', TextSendMessage(text='You can start !'))
+line_bot_api = LineBotApi(line_channel_access_token)
+handler = WebhookHandler(line_channel_secret)
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
