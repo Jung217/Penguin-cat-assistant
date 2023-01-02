@@ -3,7 +3,7 @@ from PIL import Image
 
 url = "https://raw.githubusercontent.com/Jung217/Penguin-cat-assistant/main/pic/me.png"
 img1 = Image.open(request.urlopen(url))
-img2 = Image.open(r"D:\Downloda\144620.jpg") #改成要後製的圖片路徑
+img2 = Image.open(r"路徑") #改成要後製的圖片路徑
 
 w, h = img2.size #取輸入圖片尺寸
 

@@ -1,6 +1,6 @@
 from PIL import Image
 
-img = Image.open(r"C:\Users\alex2\Desktop\照片\img1.png")
+img = Image.open(r"路徑")
 
 imgG = img.convert('L') # 灰階
 imgG.save("GRAY.jpg")

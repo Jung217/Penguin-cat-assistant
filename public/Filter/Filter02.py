@@ -1,6 +1,6 @@
 from PIL import Image,ImageFilter
 
-img = Image.open(r"C:\Users\alex2\Desktop\照片\img1.png")
+img = Image.open(r"路徑")
 
 imgFilter = img.filter(ImageFilter.BLUR) #模糊
 imgFilter.save("BLUR.jpg") 
