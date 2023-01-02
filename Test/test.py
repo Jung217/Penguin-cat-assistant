@@ -45,3 +45,14 @@ if event.message.type == "image":
 		img_url = glucose_graph("d8f43d95eef9f03", local_save)
 		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(str(ID)))
+
+if event.message.type == "image":
+        message_content = line_bot_api.get_message_content(event.message.id)
+
+        file_path = "Penguin-cat-assistant\pic"
+
+        with open(file_path, 'wb') as fd:
+            for chunk in message_content.iter_content():
+                fd.write(chunk)
+
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(message_content)))
