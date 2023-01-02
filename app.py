@@ -210,6 +210,13 @@ def handle_message(event):
         sendString = "https://colab.research.google.com/drive/1zuaIM3YK3jbfLykKOtk5fr8j6fLkT3Ce?authuser=2#scrollTo=TEBFojJ3hB27"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
+    elif re.match('後製示範',message):
+        video_message = VideoSendMessage(
+            original_content_url='https://imgur.com/TxrFM93',
+            preview_image_url='https://imgur.com/9lDJ8nH'
+        )
+        line_bot_api.reply_message(event.reply_token, video_message)
+
     elif re.match("擲筊",message):
         sendString = "恭喜" + divinationBlocks() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
@@ -231,6 +238,9 @@ def handle_message(event):
                         MessageAction( 
                             label="後製",
                             text="後製特效"),
+                            MessageAction( 
+                            label="示範",
+                            text="後製示範"),
                         MessageAction( 
                             label="更多",
                             text="更多特效"),
