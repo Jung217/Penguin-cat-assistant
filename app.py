@@ -93,6 +93,11 @@ def stock_info(stock_in):
         stock_out = '查無此股票，請再輸入一次' + '\n' + '若股票名稱中有「臺」，請將它改為「台」'
     return stock_out
 
+def glucose_graph(client_id, imgpath):
+	im = pyimgur.Imgur(client_id)
+	upload_image = im.upload_image(imgpath, title="Uploaded with PyImgur")
+	return upload_image.link
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -115,6 +120,17 @@ def handle_message(event):
     if re.match("大秘寶",message):
         remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
+    elif event.message.type == "image":
+		SendImage = line_bot_api.get_message_content(event.message.id)
+
+		local_save = './Image/' + event.message.id + '.png'
+		with open(local_save, 'wb') as fd:
+			for chenk in SendImage.iter_content():
+				fd.write(chenk)
+
+		img_url = glucose_graph(d8f43d95eef9f03, local_save)
+		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
 
     elif "生日" in message:
         bless = ['生日快樂！希望你的所有願望都能成真','準備好開始倒數了嗎？下次跟你說生日快樂是 365 天之後，生日快樂！','原本想送你一個最可愛的禮物，後來只能找第二可愛的，因為你排名第一呀。','大壽星，小蛋糕，絕配。生日快樂！','你生日的這一天，我沒有跟你在一起，只希望你能快樂、健康、美麗，生命需要奮鬥、創造和把握！生日快樂！','Happy birthday to the most wonderful friend in my heart.','Wish you a happy birthday! May the best and the loving things be some of the joy your birthday bring.']
