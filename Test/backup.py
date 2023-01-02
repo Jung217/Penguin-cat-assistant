@@ -74,19 +74,36 @@ def stock_info(stock_in):
             td = row.find_all('td')
             td_ary += td
 
-        date = td_ary[4].text.replace('資料日期: ', '')  #日期
-        stock_num = stock_num                           #股票代碼
-        stock_in = stock_in                             #股票名稱
-        attribute = stock_atr                           #證卷別
-        price = td_ary[10].text                         #成交價
-        yesterday = td_ary[11].text                     #昨收
-        updowmprice = td_ary[12].text                   #漲跌價
-        updownchange = td_ary[13].text                  #漲跌幅
-        amplitude = td_ary[14].text                     #振幅
-        openprice = td_ary[15].text                     #開盤價
-        highprice = td_ary[16].text                     #最高價
-        lowprice = td_ary[17].text                      #最低價
-        averageprice = td_ary[22].text                  #成交均價
+        if(stock_atr == '股票'):
+            date = td_ary[4].text.replace('資料日期: ', '')  #日期
+            stock_num = stock_num                           #股票代碼
+            stock_in = stock_in                             #股票名稱
+            attribute = stock_atr                           #證卷別
+            price = td_ary[10].text                         #成交價
+            yesterday = td_ary[11].text                     #昨收
+            updowmprice = td_ary[12].text                   #漲跌價
+            updownchange = td_ary[13].text                  #漲跌幅
+            amplitude = td_ary[14].text                     #振幅
+            openprice = td_ary[15].text                     #開盤價
+            highprice = td_ary[16].text                     #最高價
+            lowprice = td_ary[17].text                      #最低價
+            averageprice = td_ary[22].text                  #成交均價
+
+        else:
+            date = td_ary[1].text.replace('資料日期: ', '')  
+            stock_num = stock_num                           
+            stock_in = stock_in                         
+            attribute = stock_atr                       
+            price = td_ary[4].text                      
+            yesterday = td_ary[5].text                
+            updowmprice = td_ary[6].text                
+            updownchange = td_ary[7].text               
+            amplitude = td_ary[8].text                 
+            openprice = td_ary[9].text                     
+            highprice = td_ary[10].text                    
+            lowprice = td_ary[11].text                     
+            averageprice = td_ary[16].text      
+
         stock_out = ('日期　　：　%s\n股票代碼：　%s\n股票名稱：　%s\n證卷別　：　%s\n成交價　：　%s\n昨收　　：　%s\n漲跌價　：　%s\n漲跌幅　：　%s\n振幅　　：　%s\n開盤價　：　%s\n最高價　：　%s\n最低價　：　%s\n成交均價：　%s' %(date, stock_num, stock_in, attribute, price, yesterday, updowmprice, updownchange, amplitude, openprice, highprice, lowprice, averageprice))
         
     elif(stock_name == False):
@@ -113,7 +130,7 @@ def handle_message(event):
     sendString = ""
     
     if re.match("大秘寶",message):
-        remessage = "觸發驚喜的密語:\n\n後製\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
+        remessage = "觸發驚喜的密語:\n\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif "生日" in message:
@@ -186,8 +203,12 @@ def handle_message(event):
         sendString = "https://drive.google.com/drive/folders/16puql_Nj0VeFBt3a24JzD8N4akAcw8LK?usp=sharing"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
-    elif re.match("後製特效",message):
+    elif re.match("更多特效",message):
         sendString = "https://github.com/Jung217/Penguin-cat-assistant/tree/main/public"
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+
+    elif re.match("後製特效",message):
+        sendString = "https://colab.research.google.com/drive/1zuaIM3YK3jbfLykKOtk5fr8j6fLkT3Ce?authuser=2#scrollTo=TEBFojJ3hB27 \n\n https://youtu.be/Tp_tT4vJIdY"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
     elif re.match("擲筊",message):
@@ -211,6 +232,9 @@ def handle_message(event):
                         MessageAction( 
                             label="後製",
                             text="後製特效"),
+                        MessageAction( 
+                            label="更多",
+                            text="更多特效"),
                         MessageAction( 
                             label="成品",
                             text="成品展示")
