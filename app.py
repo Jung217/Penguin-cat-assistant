@@ -182,6 +182,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
 
+    elif re.match("Flickr Link",message):
+        sendString = "https://www.flickr.com/photos/cjc217"
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+
     elif re.match("後製特效",message):
         sendString = "https://github.com/Jung217/Penguin-cat-assistant/tree/main/public"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
@@ -206,7 +210,7 @@ def handle_message(event):
                     actions =[
                         MessageAction( 
                             label="Flickr",
-                            text="https://www.flickr.com/photos/cjc217"),
+                            text="Flickr Link"),
                         MessageAction( 
                             label="後製",
                             text="後製特效")
