@@ -183,7 +183,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
 
     elif re.match("後製特效",message):
-        sendString = "https://github.com/Jung217/Penguin-cat-assistant/tree/main/public/Paste%20Me"
+        sendString = "https://github.com/Jung217/Penguin-cat-assistant/tree/main/public"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
     elif re.match("擲筊",message):
