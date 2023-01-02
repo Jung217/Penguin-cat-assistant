@@ -33,11 +33,6 @@ def drawStraws():
     drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶", "大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
     return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
 
-def glucose_graph(client_id, imgpath):
-	im = pyimgur.Imgur(client_id)
-	upload_image = im.upload_image(imgpath, title="Uploaded with PyImgur")
-	return upload_image.link
-
 def stock_info(stock_in):
     url = 'https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname=&isincode=&market=1&issuetype=&industry_code=&Page=1&chklike=Y'
     r = requests.get(url)
