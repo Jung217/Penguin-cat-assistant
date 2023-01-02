@@ -90,19 +90,19 @@ def stock_info(stock_in):
             averageprice = td_ary[22].text                  #成交均價
             stock_out = ('日期　　：　%s\n股票代碼：　%s\n股票名稱：　%s\n證卷別　：　%s\n成交價　：　%s\n昨收　　：　%s\n漲跌價　：　%s\n漲跌幅　：　%s\n振幅　　：　%s\n開盤價　：　%s\n最高價　：　%s\n最低價　：　%s\n成交均價：　%s' %(date, stock_num, stock_in, attribute, price, yesterday, updowmprice, updownchange, amplitude, openprice, highprice, lowprice, averageprice))
         else:
-            date = td_ary[1].text.replace('資料日期: ', '')  #日期
-            stock_num = stock_num                           #股票代碼
-            stock_in = stock_in                             #股票名稱
-            attribute = stock_atr                           #證卷別
-            price = td_ary[4].text                         #成交價
-            yesterday = td_ary[5].text                     #昨收
-            updowmprice = td_ary[6].text                   #漲跌價
-            updownchange = td_ary[7].text                  #漲跌幅
-            amplitude = td_ary[8].text                     #振幅
-            openprice = td_ary[9].text                     #開盤價
-            highprice = td_ary[10].text                     #最高價
-            lowprice = td_ary[11].text                      #最低價
-            averageprice = td_ary[16].text                  #成交均價
+            date = td_ary[1].text.replace('資料日期: ', '')  
+            stock_num = stock_num                           
+            stock_in = stock_in                         
+            attribute = stock_atr                       
+            price = td_ary[4].text                      
+            yesterday = td_ary[5].text                
+            updowmprice = td_ary[6].text                
+            updownchange = td_ary[7].text               
+            amplitude = td_ary[8].text                 
+            openprice = td_ary[9].text                     
+            highprice = td_ary[10].text                    
+            lowprice = td_ary[11].text                     
+            averageprice = td_ary[16].text                  
             stock_out = ('日期　　：　%s\n股票代碼：　%s\n股票名稱：　%s\n證卷別　：　%s\n成交價　：　%s\n昨收　　：　%s\n漲跌價　：　%s\n漲跌幅　：　%s\n振幅　　：　%s\n開盤價　：　%s\n最高價　：　%s\n最低價　：　%s\n成交均價：　%s' %(date, stock_num, stock_in, attribute, price, yesterday, updowmprice, updownchange, amplitude, openprice, highprice, lowprice, averageprice))
         
     elif(stock_name == False):
