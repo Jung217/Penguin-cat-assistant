@@ -115,7 +115,7 @@ def callback():
 @handler.add(MessageEvent)
 def handle_message(event):
     if event.message.type == "image":
-        message_content = line_bot_api.get_message_content('<message_id>')
+        message_content = line_bot_api.get_message_content(event.message.id)
 
         file_path = "Penguin-cat-assistant\pic"
 
