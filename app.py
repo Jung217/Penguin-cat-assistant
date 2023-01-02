@@ -238,6 +238,9 @@ def handle_message(event):
                         MessageAction( 
                             label="成品",
                             text="成品展示")
+                        MessageAction( 
+                            label="說明",
+                            text="使用說明")
                         ]
                     )
                 ]
