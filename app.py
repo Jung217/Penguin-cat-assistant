@@ -182,8 +182,8 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
 
-    elif re.match("Flickr Link",message):
-        sendString = "https://www.flickr.com/photos/cjc217"
+    elif re.match("成品展示",message):
+        sendString = "https://drive.google.com/drive/folders/16puql_Nj0VeFBt3a24JzD8N4akAcw8LK?usp=sharing"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
     elif re.match("後製特效",message):
@@ -209,11 +209,11 @@ def handle_message(event):
                     text ="請點選想了解的資訊", 
                     actions =[
                         MessageAction( 
-                            label="Flickr",
-                            text="Flickr Link"),
-                        MessageAction( 
                             label="後製",
-                            text="後製特效")
+                            text="後製特效"),
+                        MessageAction( 
+                            label="成品",
+                            text="成品展示")
                         ]
                     )
                 ]
