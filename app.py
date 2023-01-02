@@ -106,10 +106,6 @@ def stock_info(stock_in):
         stock_out = '查無此股票，請再輸入一次' + '\n' + '若股票名稱中有「臺」，請將它改為「台」'
     return stock_out
 
-def tran_CH(tran_ch):
-    tran_chinese = translator.translate(tran_ch, dest='zh-TW').text
-    return tran_chinese
-
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -152,17 +148,17 @@ def handle_message(event):
     
     elif "翻中 " in message:
         content = translate_text(event.message.text[3:], "zh-tw")
-        remessage = TextSendMessage(text=content)
+        remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
     elif "翻英 " in message:
         content = translate_text(event.message.text[3:] , "en")
-        remessage = TextSendMessage(text=content)
+        remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
     elif "翻日 " in message:
         content = translate_text(event.message.text[3:] , "ja")
-        remessage = TextSendMessage(text=content)
+        remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
     elif "吃什麼" in message:
