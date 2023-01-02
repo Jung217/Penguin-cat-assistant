@@ -1,32 +1,30 @@
-from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import *
-from io import StringIO
-from bs4 import BeautifulSoup
-import datetime
-import pandas as pd
-import requests
-import re
-import os
-import random
-import configparser
-from PIL import Image
-import pyimgur
-
-def glucose_graph(client_id, imgpath):
-	im = pyimgur.Imgur(client_id)
-	upload_image = im.upload_image(imgpath, title="Uploaded with PyImgur")
-	return upload_image.link
+from imgurpython import ImgurClient
+from datetime import datetime
 
 
-#SendImage = line_bot_api.get_message_content(event.message.id)
+def upload(client_data, local_img_file, album , name = 'test-name!' ,title = 'test-title' ):
+    config = {
+        'album':  album,
+        'name': name,
+        'title': title,
+        'description': f'test-{datetime.now()}'
+    }
 
-local_save = 'Penguin-cat-assistant\pic\me.png'
-#with open(local_save, 'wb') as fd:
-#    for chenk in SendImage.iter_content():
-#        fd.write(chenk)
+    print("Uploading image... ")
+    image = client_data.upload_from_path(local_img_file, config=config, anon=False)
+    print("Done")
 
-img_url = glucose_graph("d8f43d95eef9f03", local_save)
-print(img_url)
-#line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    return image
+
+
+if __name__ == "__main__":
+    client_id ='d8f43d95eef9f03'
+    client_secret = 'feb68e5f92b414abe07b733f052a28d178014f32'
+    access_token = "9186d34380cec7f4896f65addc9ca95f6022ba39"
+    refresh_token = "52394ee41eec3876be8484cbb5ede2e63ebf2d1d"
+    album = "a/DTCcvw"
+    local_img_file = "test.png"
+    
+    client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+    image = upload(client, local_img_file, album)
+    print(f"圖片網址: {image['link']}")
