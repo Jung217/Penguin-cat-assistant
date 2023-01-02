@@ -13,11 +13,16 @@ import random
 import configparser
 from PIL import Image
 import pyimgur
+from imgurpython import ImgurClient
+import tempfile, os
+from config import client_id, client_secret, album_id, access_token, refresh_token
 
 app = Flask(__name__)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 line_bot_api = LineBotApi('8mHVNSHnlj3xx9180Kt+XKh6oVyljAhhV/qOrXL2XXorpdwIO5eard7Jfkvd2wR8P+cEQdUJQ3sEcI0clytSMsoaMH7fQZt4zjHoOUMdJXx9A9fsVr25H6gESwSPYJ3kOe3BF4+4qNnQzZXMVr5tbgdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('fe4ffd95d0f99b968144e632168904cc')
@@ -240,6 +245,33 @@ def handle_message(event):
         else:
             remessage = '請再輸入一次星座代號!'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
+    elif isinstance(event.message, ImageMessage):
+        ext = 'jpg'
+        message_content = line_bot_api.get_message_content(event.message.id)
+        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+            for chunk in message_content.iter_content():
+                tf.write(chunk)
+            tempfile_path = tf.name
+
+        dist_path = tempfile_path + '.' + ext
+        dist_name = os.path.basename(dist_path)
+        os.rename(tempfile_path, dist_path)
+        try:
+            client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+            config = {
+                'album': "a/9NYtvyt",
+                'name': 'Test',
+                'title': 'Test',
+                'description': ''
+            }
+            path = os.path.join('static', 'tmp', dist_name)
+            client.upload_from_path(path, config=config, anon=False)
+            os.remove(path)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='上傳成功'))
+        except:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='上傳失敗'))
+        return 0
 
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
