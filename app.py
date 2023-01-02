@@ -143,7 +143,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif re.match("翻譯小精靈",message):
-        remessage = "請輸入您想翻譯的文章: \n 如:翻中 Hello World! \n 　 翻英 你好世界\n 　 翻日 你好世界"
+        remessage = "請輸入您想翻譯的文章: \n 如:#翻中Hello World! \n 　 #翻英你好世界\n 　 #翻日你好世界"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     
     elif "翻中 " in message:
