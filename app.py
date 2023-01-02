@@ -116,7 +116,8 @@ def callback():
 def handle_message(event):
     if (event.message.type == "image"):
         SendImage = line_bot_api.get_message_content(event.message.id)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(SendImage))
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(SendImage))
+        print(SendImage)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
