@@ -19,5 +19,5 @@ foreground = imgP
 Result = img2
 
 Result.paste(foreground, (-5, PY), foreground) #貼上圖片
-Result.save("paste_me1.jpg") #儲存
+Result.save("paste_me2.jpg") #儲存
 Result.show() #開啟展示
