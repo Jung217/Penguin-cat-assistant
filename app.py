@@ -146,17 +146,17 @@ def handle_message(event):
         remessage = "請輸入您想翻譯的文章: \n 如:#翻中Hello World! \n 　 #翻英你好世界\n 　 #翻日你好世界"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
     
-    elif "翻中 " in message:
+    elif "#翻中" in message:
         content = translate_text(event.message.text[3:], "zh-tw")
         remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
-    elif "翻英 " in message:
+    elif "#翻英" in message:
         content = translate_text(event.message.text[3:] , "en")
         remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
 
-    elif "翻日 " in message:
+    elif "#翻日" in message:
         content = translate_text(event.message.text[3:] , "ja")
         remessage = content
         line_bot_api.reply_message(event.reply_token, TextSendMessage(remessage))
