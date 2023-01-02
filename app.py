@@ -117,13 +117,15 @@ def handle_message(event):
     if event.message.type == "image":
         SendImage = line_bot_api.get_message_content(event.message.id)
         ID = SendImage.replace('<linebot.models.responses.Content object at >', '')
-		local_save = './pic/' + ID + '.png'
-		with open(local_save, 'wb') as fd:
-			for chenk in SendImage.iter_content():
-				fd.write(chenk)
+		#local_save = './pic/' + ID + '.png'
 
-		img_url = glucose_graph("d8f43d95eef9f03", local_save)
-		line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+		#with open(local_save, 'wb') as fd:
+		#	for chenk in SendImage.iter_content():
+		#		fd.write(chenk)
+
+		#img_url = glucose_graph("d8f43d95eef9f03", local_save)
+		#line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(ID)))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
