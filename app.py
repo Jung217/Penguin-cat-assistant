@@ -117,6 +117,8 @@ def handle_message(event):
     if event.message.type == "image":
         message_content = line_bot_api.get_message_content('<message_id>')
 
+        file_path = "Penguin-cat-assistant\pic"
+
         with open(file_path, 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
