@@ -135,7 +135,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
 
     elif re.match("股票資訊",message):
-        remessage = "請輸入您想輸入的股票名稱: \n 如:@台積電 \n 請稍後..."
+        remessage = "請輸入您想查詢的股票名稱: \n 如:@台積電 \n 請稍後..."
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         
     elif '@' in message:
