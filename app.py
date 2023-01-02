@@ -121,11 +121,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
 
     elif re.match("股票資訊",message):
-        remessage = "請輸入你想輸入的股票名稱: \n 如:@股票 台積電"
+        remessage = "請輸入你想輸入的股票名稱: \n 如:股票 台積電"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         
-    elif '@股票' in message:
-        stock_in = message.replace('@股票 ', '')
+    elif '股票' in message:
+        stock_in = message.replace('股票 ', '')
         remessage = stock_info(stock_in)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
