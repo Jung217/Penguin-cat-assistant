@@ -11,11 +11,11 @@ A personal Line Bot with multiple services.
 
 
 ## Files
-app.py : Line-Bot's main program
+[app.py](https://github.com/Jung217/Penguin-cat-assistant/blob/main/app.py) : Line-Bot's main program
 
-Procfile : for HEROKU only
+[Procfile](https://github.com/Jung217/Penguin-cat-assistant/blob/main/Procfile) : for HEROKU only
 
-requirements.txt : contain inport packages and their certain versions 
+[requirements.txt](https://github.com/Jung217/Penguin-cat-assistant/blob/main/requirements.txt) : contain inport packages and their certain versions 
 
 
 
