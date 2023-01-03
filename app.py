@@ -225,6 +225,10 @@ def handle_message(event):
         sendString = "https://colab.research.google.com/drive/1zuaIM3YK3jbfLykKOtk5fr8j6fLkT3Ce?authuser=2#scrollTo=TEBFojJ3hB27 \n\n https://youtu.be/Tp_tT4vJIdY"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
+    elif re.match("更多特效",message):
+        sendString = "https://colab.research.google.com/drive/1kIIh3b0d265d7LdVo7XDEmd5rqaPIZcy?usp=sharing"
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
+
     elif re.match("擲筊",message):
         sendString = "恭喜" + divinationBlocks() + "!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
