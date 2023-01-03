@@ -13,6 +13,7 @@ import random
 import configparser
 from PIL import Image
 import pyimgur
+from googletrans import Translator
 
 app = Flask(__name__)
 
@@ -32,11 +33,6 @@ def divinationBlocks():
 def drawStraws():
     drawStrawsList = ["大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶", "大吉", "中吉", "小吉", "吉", "凶", "小凶", "中凶", "大凶"]
     return drawStrawsList[random.randint(0, len(drawStrawsList) - 1)]
-
-def glucose_graph(client_id, imgpath):
-	im = pyimgur.Imgur(client_id)
-	upload_image = im.upload_image(imgpath, title="Uploaded with PyImgur")
-	return upload_image.link
 
 def stock_info(stock_in):
     url = 'https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname=&isincode=&market=1&issuetype=&industry_code=&Page=1&chklike=Y'
@@ -128,7 +124,7 @@ def callback():
 def handle_message(event):
     message = event.message.text
     sendString = ""
-    
+
     if re.match("大秘寶",message):
         remessage = "觸發驚喜的密語:\n\n恭喜\n今天我生日\n金門大學在哪\n\n試著輸入看看吧!"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
@@ -138,12 +134,34 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(bless[random.randint(0, len(bless)-1)]))
 
     elif re.match("股票資訊",message):
-        remessage = "請輸入您想輸入的股票名稱: \n 如:@台積電 \n 請稍後..."
+        remessage = "請輸入您想查詢的股票名稱: \n 如:@台積電 \n 請稍後..."
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
         
     elif '@' in message:
         stock_in = message.replace('@', '')
         remessage = stock_info(stock_in)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
+    elif re.match("翻譯小精靈",message):
+        remessage = "請輸入您想翻譯的文章: \n 如:翻中 Hello World! \n 　 翻英 你好世界\n 　 翻日 你好世界"
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+    
+    elif "翻中 " in message:
+        translator = Translator()
+        tranch = message.replace('翻中 ', '')
+        remessage = translator.translate(tranch, 'zh-TW').text
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
+    elif "翻英 " in message:
+        translator = Translator()
+        tranen = message.replace('翻英 ', '')
+        remessage = translator.translate(tranen, 'en').text
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
+
+    elif "翻日 " in message:
+        translator = Translator()
+        tranja = message.replace('翻日 ', '')
+        remessage = translator.translate(tranja, 'ja').text
         line_bot_api.reply_message(event.reply_token,TextSendMessage(remessage))
 
     elif "吃什麼" in message:

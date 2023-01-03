@@ -221,10 +221,6 @@ def handle_message(event):
         sendString = "https://drive.google.com/drive/folders/16puql_Nj0VeFBt3a24JzD8N4akAcw8LK?usp=sharing"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
 
-    elif re.match("更多特效",message):
-        sendString = "https://github.com/Jung217/Penguin-cat-assistant/tree/main/public"
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
-
     elif re.match("後製特效",message):
         sendString = "https://colab.research.google.com/drive/1zuaIM3YK3jbfLykKOtk5fr8j6fLkT3Ce?authuser=2#scrollTo=TEBFojJ3hB27 \n\n https://youtu.be/Tp_tT4vJIdY"
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendString))
