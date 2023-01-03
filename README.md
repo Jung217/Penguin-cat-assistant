@@ -8,5 +8,6 @@ Add our Line Bot:
 ![image](https://github.com/Jung217/Penguin-cat-assistant/blob/main/pic/Line.png)
 
 Last update : 2023/01/03 By Jung 
+Contact me : alex24922665@gmail.com
 
 :D
