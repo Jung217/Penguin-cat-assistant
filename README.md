@@ -15,7 +15,7 @@ A personal Line Bot with multiple services.
 
 [Procfile](https://github.com/Jung217/Penguin-cat-assistant/blob/main/Procfile) : for HEROKU only
 
-[requirements.txt](https://github.com/Jung217/Penguin-cat-assistant/blob/main/requirements.txt) : contain inport packages and their certain versions 
+[requirements.txt](https://github.com/Jung217/Penguin-cat-assistant/blob/main/requirements.txt) : contain import packages and the certain versions 
 
 
 
